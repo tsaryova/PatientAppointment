@@ -23,8 +23,9 @@ CREATE TABLE IF NOT EXISTS patient
 
 CREATE TABLE IF NOT EXISTS time_slot
 (
-    id bigint NOT NULL ,
-    doctor_id bigint NOT NULL references doctor(id) ,
-    patient_id bigint NOT NULL references patient(id)
+    id bigserial NOT NULL ,
+    doctor_id bigint NOT NULL references doctor(id) on delete cascade,
+    patient_id bigint NOT NULL references patient(id) on delete cascade,
+    CONSTRAINT slot_pkey PRIMARY KEY (id)
 
 );
