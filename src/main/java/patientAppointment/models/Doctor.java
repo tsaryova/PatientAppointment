@@ -40,4 +40,10 @@ public class Doctor {
     @CreationTimestamp
     private Instant createdAt;
 
+    @PrePersist
+    protected void onCreate() {
+        if (createdAt == null) { createdAt = Instant.now(); }
+        if (uuid == null) {uuid = UUID.randomUUID(); }
+    }
+
 }

@@ -32,4 +32,10 @@ public class TimeSlot {
     @CreationTimestamp
     private Instant createdAt;
 
+    @PrePersist
+    protected void onCreate() {
+        if (createdAt == null) { createdAt = Instant.now(); }
+    }
+
+
 }

@@ -29,4 +29,12 @@ public class TimeSlotService {
     public List<TimeSlot> getSlotByPatient(Patient patient) {
         return timeSlotRepository.getTimeSlotByPatient(patient);
     }
+
+    public void setPatientToSlot(TimeSlot timeSlot, Patient patient) {
+        if (timeSlot.getPatient() == null) {
+            TimeSlot currentTimeSlot = timeSlotRepository.findById(timeSlot.getId()).get();
+            currentTimeSlot.setPatient(patient);
+            timeSlotRepository.save(currentTimeSlot);
+        }
+    }
 }
