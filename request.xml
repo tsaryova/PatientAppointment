@@ -1,0 +1,7 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+                  xmlns:gs="http://localhost:8080/schedule-ws">
+<soapenv:Header/>
+<soapenv:Body>
+    <gs:getAllSlotsRequest/>
+</soapenv:Body>
+</soapenv:Envelope>

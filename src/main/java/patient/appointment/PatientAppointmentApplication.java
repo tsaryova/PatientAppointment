@@ -1,4 +1,4 @@
-package patientAppointment;
+package patient.appointment;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -9,5 +9,4 @@ public class PatientAppointmentApplication {
     public static void main(String[] args) {
         SpringApplication.run(PatientAppointmentApplication.class, args);
     }
-
 }
