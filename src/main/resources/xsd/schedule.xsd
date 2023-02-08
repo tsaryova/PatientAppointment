@@ -1,0 +1,42 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:tns="http://localhost:8080/schedule-ws"
+           targetNamespace="http://localhost:8080/schedule-ws"
+           elementFormDefault="qualified">
+
+    <xs:element name="getSlotByIdRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="slotId" type="xs:long" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getSlotByIdResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="slotInfo" type="tns:slotInfo" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:complexType name="slotInfo">
+        <xs:sequence>
+            <xs:element name="id" type="xs:long" />
+            <xs:element name="appointmentTime" type="xs:string" />
+            <xs:element name="doctorName" type="xs:string" />
+            <xs:element name="patientName" type="xs:string" />
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="getAllSlotsRequest">
+        <xs:complexType/>
+    </xs:element>
+    <xs:element name="getAllSlotsResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="slotInfo" type="tns:slotInfo" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+
+
+</xs:schema>

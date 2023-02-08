@@ -1,16 +1,18 @@
-package patientAppointment.service;
+package patient.appointment.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import patientAppointment.models.Doctor;
-import patientAppointment.models.Patient;
-import patientAppointment.models.TimeSlot;
-import patientAppointment.repositories.TimeSlotRepository;
+import patient.appointment.models.Doctor;
+import patient.appointment.models.Patient;
+import patient.appointment.models.TimeSlot;
+import patient.appointment.repositories.TimeSlotRepository;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -18,6 +20,12 @@ import java.util.List;
 public class TimeSlotService {
 
     private final TimeSlotRepository timeSlotRepository;
+
+    public TimeSlot findById(Long id) { return timeSlotRepository.findById(id).get();}
+    public List<TimeSlot> findAllSlots() {
+        return StreamSupport.stream(timeSlotRepository.findAll().spliterator(), false)
+                .collect(Collectors.toList());
+    }
 
     public List<TimeSlot> getFreeSlotByOneDoctor(Doctor doctor, LocalDate day) {
         LocalDateTime start = day.atStartOfDay();

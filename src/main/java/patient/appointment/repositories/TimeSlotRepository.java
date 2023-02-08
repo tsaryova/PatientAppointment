@@ -1,9 +1,9 @@
-package patientAppointment.repositories;
+package patient.appointment.repositories;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
-import patientAppointment.models.Patient;
-import patientAppointment.models.TimeSlot;
+import patient.appointment.models.Patient;
+import patient.appointment.models.TimeSlot;
 
 import java.time.LocalDateTime;
 import java.util.List;

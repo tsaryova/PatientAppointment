@@ -1,10 +1,10 @@
-package patientAppointment.service;
+package patient.appointment.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import patientAppointment.models.Doctor;
-import patientAppointment.repositories.DoctorRepository;
+import patient.appointment.models.Doctor;
+import patient.appointment.repositories.DoctorRepository;
 
 import java.util.List;
 import java.util.UUID;

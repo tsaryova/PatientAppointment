@@ -1,9 +1,9 @@
-package patientAppointment.service;
+package patient.appointment.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import patientAppointment.models.Patient;
-import patientAppointment.repositories.PatientRepositiry;
+import patient.appointment.models.Patient;
+import patient.appointment.repositories.PatientRepositiry;
 
 import java.time.LocalDate;
 import java.util.List;

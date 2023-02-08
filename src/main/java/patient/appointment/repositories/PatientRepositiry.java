@@ -1,7 +1,7 @@
-package patientAppointment.repositories;
+package patient.appointment.repositories;
 
 import org.springframework.data.repository.CrudRepository;
-import patientAppointment.models.Patient;
+import patient.appointment.models.Patient;
 
 public interface PatientRepositiry extends CrudRepository<Patient, Long> {
 }

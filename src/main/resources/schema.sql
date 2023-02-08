@@ -1,33 +1,36 @@
-CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
-SELECT uuid_generate_v4();
-
-CREATE TABLE IF NOT EXISTS doctor
+create table if not exists doctor
 (
-    id bigserial NOT NULL,
-    uuid uuid NOT NULL DEFAULT uuid_generate_v4 (),
-    fullname character varying(200) NOT NULL,
-    specialization character varying(100) NOT NULL,
-    created_at timestamp with time zone NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    CONSTRAINT doctor_pkey PRIMARY KEY (id)
+    id             bigserial    not null
+        constraint doctor_pkey
+            primary key,
+    created_at     timestamp(6) with time zone,
+    fullname       varchar(200) not null,
+    specialization varchar(100) not null,
+    uuid           uuid         not null
 );
 
-CREATE TABLE IF NOT EXISTS patient
+create table if not exists patient
 (
-    id bigserial NOT NULL,
-    uuid uuid NOT NULL DEFAULT uuid_generate_v4 (),
-    fullname character varying(200) NOT NULL,
-    birthday date,
-    created_at timestamp with time zone NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    CONSTRAINT patient_pkey PRIMARY KEY (id)
+    id         bigserial    not null
+        constraint patient_pkey
+            primary key,
+    birthday   date,
+    created_at timestamp(6) with time zone,
+    fullname   varchar(200) not null,
+    uuid       uuid         not null
 );
 
-CREATE TABLE IF NOT EXISTS time_slot
+create table if not exists time_slot
 (
-    id bigserial NOT NULL ,
-    doctor_id bigint NOT NULL references doctor(id) on delete cascade,
-    patient_id bigint references patient(id) on delete cascade,
-    appointment_time date NOT NULL,
-    created_at timestamp with time zone NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    CONSTRAINT slot_pkey PRIMARY KEY (id)
-
+    id               bigserial    not null
+        constraint time_slot_pkey
+            primary key,
+    appointment_time timestamp(6) not null,
+    created_at       timestamp(6) with time zone,
+    doctor_id        bigint       not null
+        constraint fk_time_slot_to_doctor
+            references doctor,
+    patient_id       bigint
+        constraint fk_time_slot_to_patient
+            references patient
 );
