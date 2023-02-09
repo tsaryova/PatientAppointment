@@ -35,4 +35,12 @@ public class DoctorService {
         doctorRepository.saveAll(List.of(doctor1, doctor2, doctor3));
     }
 
+    public Doctor getDoctorById(String id) {
+        if (id != null) {
+            Long idLong = Long.parseLong(id);
+            return doctorRepository.findById(idLong).get();
+        }
+        throw new RuntimeException("Incorrect id");
+    }
+
 }
