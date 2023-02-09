@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import patient.appointment.models.Doctor;
 import patient.appointment.models.Patient;
 import patient.appointment.models.TimeSlot;
+import patient.appointment.repositories.PatientRepositiry;
 import patient.appointment.repositories.TimeSlotRepository;
 
 import java.time.LocalDate;
@@ -20,6 +21,7 @@ import java.util.stream.StreamSupport;
 public class TimeSlotService {
 
     private final TimeSlotRepository timeSlotRepository;
+    private final PatientRepositiry patientRepositiry;
 
     public TimeSlot findById(Long id) { return timeSlotRepository.findById(id).get();}
     public List<TimeSlot> findAllSlots() {
@@ -34,8 +36,19 @@ public class TimeSlotService {
         return timeSlotRepository.getFreeSlotByOneDoctor(doctor.getId(), start, end);
     }
 
-    public List<TimeSlot> getSlotByPatient(Patient patient) {
+    private List<TimeSlot> getSlotByPatient(Patient patient) {
         return timeSlotRepository.getTimeSlotByPatient(patient);
+    }
+    public List<TimeSlot> getSlotByPatientId(String id) {
+        if (id != null) {
+            Long idLong = Long.parseLong(id);
+            Patient patient = patientRepositiry.findById(idLong).get();
+            if (patient != null)
+                return getSlotByPatient(patient);
+            throw new RuntimeException("Absent Patient");
+        }
+        throw new RuntimeException("Incorrect id");
+
     }
 
     public void setPatientToSlot(TimeSlot timeSlot, Patient patient) {
